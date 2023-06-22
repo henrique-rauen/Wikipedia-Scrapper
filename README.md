@@ -1,6 +1,6 @@
 # Wikipedia Scraper
 This project requests a list of world leaders from the API availble at https://country-leaders.onrender.com and scrap the first paragraph from their respective wikipedia entries.
-![Sample of the output](assets/img.jpg)
+![Sample of the output](assets/img.jpg Sample of the output in the terminal)
 ## Installation
 This program requires python 3.10.4. Included in this repository is a requirements.txt file which includes the requirements. In order to install them you can run ```python -m pip install requirements.txt``` 
 Make sure to do so in a virtual environment to avoid conflicts. 
@@ -22,9 +22,9 @@ Run ```leaders_scrapper.py```. The program will print the leaders names and a sh
 	},
 	{
 	"first_name" : "Barack",
-	"last_name : "Obama",
+	"last_name" : "Obama",
 	"wikipedia_url": "https://www.wikipedia.com/Barack..."
-	"short_introduction" : Barack Hussein Obama II (born"...",
+	"short_introduction" : "Barack Hussein Obama II (born"...",
 	"start_mandate" : "2009-01-20",
 	"end_mandate" : "2017-01-20",
 	"place_of_birth" : "Kapiolani Medical Center for...", 
