@@ -7,7 +7,8 @@ Make sure to do so in a virtual environment to avoid conflicts.
 ## Usage
 Run ```leaders_scrapper.py```. The program will print the leaders names and a short introduction in the terminal. The full data will be written to a file called ```leaders.json``` according to the following pattern::
 ```py
-{"us" : [
+{
+"us" : [
 	{
 	"first_name" : "George",
 	"last_name" : "Washington",
@@ -32,12 +33,13 @@ Run ```leaders_scrapper.py```. The program will print the leaders names and a sh
 	"date_of_death" : null,
 	"id": "Q76"
 	},
-	"etc..."
+	etc...
 	],
 "ru" : [
-	"etc..."
+	etc...
 	]
-}```
+}
+```
 
 ## Made by Henrique Rauen
 This program was done in ~11 hours as part of the junior data analyst course @ becode.
