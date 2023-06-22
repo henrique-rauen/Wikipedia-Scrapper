@@ -1,7 +1,7 @@
 #! /usr/bin/python
 
 #Created by Henrique Rauen (rickgithub@hsj.email)
-#Last Modified: Thu Jun 22 03:30:38 2023
+#Last Modified: Thu Jun 22 04:19:28 2023
 import re
 from bs4 import BeautifulSoup
 import requests as r
@@ -40,7 +40,6 @@ def get_first_paragraph(wikipedia_url, session=None):
     return first_paragraph
 
 def get_leaders():
-    count =0
     """Uses the 'country-leaders' API to create a dict object with the
     following content:
     dict {country = [leader1,leader2...]}
@@ -71,8 +70,6 @@ def get_leaders():
                                                         session)
                 print(l["first_name"], l["last_name"])
                 print(l["short_intro"])
-                count+=1
-                print(count)
     return leaders_per_country
 
 def save(data, file= 'leaders.json'):
