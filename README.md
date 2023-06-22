@@ -43,4 +43,5 @@ Run ```leaders_scrapper.py```. The program will print the leaders names and a sh
 
 ## Made by Henrique Rauen
 This program was done in ~11 hours as part of the junior data analyst course @ becode.
+
 Jun 2023
