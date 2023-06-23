@@ -4,6 +4,18 @@ import requests as r
 import json
 from httpx import AsyncClient
 import asyncio
+import time
+
+#Apparently the bottleneck here is making the beautiful soup out of
+#the entire wikipedia page. Putting it into an async function does
+#not seem to help since async does not mean parallel, it still needs
+#to not be processing something, just waiting. It only uses "idle"
+#time to move on to another process, since beautifulsoup has no idle
+#time, it has basically no gains. Only the webrequests offer gains
+#but in this context they are far from being the bottleneck
+
+async def make_soup(doc):
+    return BeautifulSoup(doc, "html.parser")
 
 async def get_first_paragraph(wikipedia_url, session):
     """Returns the first paragraph of a given wikipedia_url.
@@ -17,15 +29,22 @@ async def get_first_paragraph(wikipedia_url, session):
     clean_spaces = re.compile(r"(?:(?<=[\(\s])\s)|(?:\s(?=[,]))")
     first_paragraph = None
     page = await session.get(wikipedia_url)
-    soup =  BeautifulSoup(page, "html.parser")
+    soup = await make_soup(page)
     for p in soup.find_all("p"):
         if len(p.find_all()) > 1 and len(p.find_all("b")) > 0:
-            tmp = re.sub(clean_audio, "", p.text)
-            tmp = re.sub(clean_parenthesis, "", tmp)
-            first_paragraph = re.sub(clean_spaces, "", tmp)
+            first_paragraph = await clean_up(p.text,
+                                             clean_audio,
+                                             clean_parenthesis,
+                                             clean_spaces)
             print(first_paragraph)
             break
-    return first_paragraph
+    return {id : first_paragraph}
+
+async def clean_up(text, *patterns):
+    for pat in patterns:
+        tmp = re.sub(pat, "", text)
+    return tmp
+
 
 async def get_leaders():
     """Uses the 'country-leaders' API to create a dict object with the
@@ -55,19 +74,13 @@ async def get_leaders():
                                                     async_session)
                                                     )
                                 )
-                    """
-                    l["short_intro"] = get_first_paragraph(l["wikipedia_url"],
-                                                            session)
-                    print(l["first_name"], l["last_name"])
-                    print(l["short_intro"])
-    """
             responses = await asyncio.gather(*tasks)
-    #return leaders_per_country
+            lead=[]
+            for resp in responses:
+                lead.append(resp)
+    return lead
 
-def save(data, file= 'leaders.json'):
-    """Turns 'data' into a json object and write it to 'file'"""
-    with open(file,"w") as write_file:
-        json.dump(data, write_file)
-
-#save(get_leaders())
+start = time.perf_counter()
 asyncio.run(get_leaders())
+end = time.perf_counter()
+print("exec time: ", round(end - start, 2))
