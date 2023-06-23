@@ -1,7 +1,7 @@
 #! /usr/bin/python
 
 #Created by Henrique Rauen (rickgithub@hsj.email)
-#Last Modified: Thu Jun 22 04:19:28 2023
+#Last Modified: 2023-06-23 09:37
 import re
 from bs4 import BeautifulSoup
 import requests as r
@@ -32,7 +32,7 @@ def get_first_paragraph(wikipedia_url, session=None):
     page = get_text(wikipedia_url, session)
     soup =  BeautifulSoup(page, "html.parser")
     for p in soup.find_all("p"):
-        if len(p.find_all()) > 1:
+        if len(p.find_all()) > 1 and len(p.find_all("b")) > 0:
             tmp = re.sub(clean_audio, "", p.text)
             tmp = re.sub(clean_parenthesis, "", tmp)
             first_paragraph = re.sub(clean_spaces, "", tmp)
@@ -59,8 +59,6 @@ def get_leaders():
             req_result = session.get(leaders_url + "?country=" + c,
                                     cookies=cookies)
             if req_result.status_code!=200: #Cookie error
-                print(req_result.status_code)
-                print("need new cookie")
                 cookies = session.get(cookie_url).cookies
                 req_result = session.get(leaders_url + "?country=" + c,
                                         cookies=cookies)
