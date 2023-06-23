@@ -3,6 +3,10 @@
 
 This project requests a list of world leaders using the API from [Country Leaders](https://country-leaders.onrender.com) and scrap the first paragraph from their respective wikipedia entries.<br>
 ![Sample of the output](assets/img.jpg "Sample of the output on the terminal")
+<br>
+![python version](https://img.shields.io/badge/python-3.10.6+-blue)
+![Beautiful Soup](https://img.shields.io/badge/beatiful_soup_4-green)
+![Requests](https://img.shields.io/badge/requests-orange)
 
 ## Installation
 
