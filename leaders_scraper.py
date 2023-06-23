@@ -1,12 +1,11 @@
-#! /usr/bin/python
+#! /usr/bin/python3
 
 #Created by Henrique Rauen (rickgithub@hsj.email)
-#Last Modified: 2023-06-23 09:37
+#Last Modified: 2023-06-23 10:14
 import re
 from bs4 import BeautifulSoup
 import requests as r
 import json
-import time
 
 def get_text(url, session = None):
     """Returns the webpage contents of a url. If no session is added,
