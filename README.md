@@ -1,11 +1,17 @@
+
 # Wikipedia Scraper
-This project requests a list of world leaders from the API availble at https://country-leaders.onrender.com and scrap the first paragraph from their respective wikipedia entries.
+
+This project requests a list of world leaders using the API from [Country Leaders](https://country-leaders.onrender.com) and scrap the first paragraph from their respective wikipedia entries.<br>
 ![Sample of the output](assets/img.jpg "Sample of the output on the terminal")
+
 ## Installation
-This program requires python 3.10.4. Included in this repository is a requirements.txt file which includes the requirements. In order to install them you can run ```python -m pip install requirements.txt``` 
+
+This program requires python 3.10.4. Included in this repository is a requirements.txt file which includes the requirements. In order to install them you can run `python3 -m pip install -r requirements.txt`<br>
 Make sure to do so in a virtual environment to avoid conflicts. 
+
 ## Usage
-Run ```leaders_scrapper.py```. The program will print the leaders names and a short introduction in the terminal. The full data will be written to a file called ```leaders.json``` according to the following pattern::
+
+Run `leaders_scrapper.py`. The program will print the leaders names and a short introduction in the terminal. The full data will be written to a file called `leaders.json` according to the following pattern::
 ```py
 {
 "us" : [
@@ -42,6 +48,6 @@ Run ```leaders_scrapper.py```. The program will print the leaders names and a sh
 ```
 
 ## Made by Henrique Rauen
-This program was done in ~11 hours as part of the junior data analyst course @ becode.
 
+This program was done in ~11 hours as part of the junior data analyst course @ becode.<br>
 Jun 2023
